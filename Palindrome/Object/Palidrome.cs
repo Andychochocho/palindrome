@@ -17,9 +17,31 @@ namespace PalidromeProject.Objects
       return _word;
     }
 
-    public string IsPalidrome()
+    public bool IsPalidrome()
     {
-      
+      string word = this.GetWord();
+
+      string[] specialCharacter = {"!","@","#","$","%","^","&","*","_","-","+","=", " ", ".",","};
+
+      word = word.Trim();
+      word = word.ToLower();
+
+       foreach (string element in specialCharacter)
+       {
+         word = word.Replace(element, "");
+       }
+
+      int wordLength = word.Length;
+
+      for (int i = 0; i<wordLength; i++)
+      {
+        if (word[i] != word[wordLength-(1+i)])
+        {
+          return false;
+        }
+      }
+        return true;
+
     }
   }
 }
